@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                git branch: 'dev', credentialsId: '1b8dfbf1-2419-4537-a4af-016d1309db34', url: 'https://github.com/BrianTillman/paperless-ngx.git'
+                git branch: 'main', credentialsId: '1b8dfbf1-2419-4537-a4af-016d1309db34', url: 'https://github.com/BrianTillman/paperless-ngx.git'
             }
         }
         stage('Build Container Image') {
