@@ -268,7 +268,9 @@ RUN set -eux \
 VOLUME ["/usr/src/paperless/data", \
         "/usr/src/paperless/media", \
         "/usr/src/paperless/consume", \
-        "/usr/src/paperless/export"]
+        "/usr/src/paperless/export", \
+        "/tmp", \
+        "/usr/src/paperless/trash"]
 
 ENTRYPOINT ["/sbin/docker-entrypoint.sh"]
 
