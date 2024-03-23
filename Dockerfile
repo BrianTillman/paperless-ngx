@@ -149,7 +149,7 @@ RUN set -eux \
         && rm --force --verbose *.deb \
     && rm --recursive --force --verbose /var/lib/apt/lists/* \
   && echo "Installing supervisor" \
-    && python3 -m pip install --default-timeout=1000 --upgrade --no-cache-dir supervisor==4.2.5
+    && python3 -m pip install --default-timeout=1001 --upgrade --no-cache-dir supervisor==4.2.5
 
 # Copy gunicorn config
 # Changes very infrequently
@@ -223,7 +223,7 @@ RUN --mount=type=cache,target=/root/.cache/pip/,id=pip-cache \
     && apt-get install --yes --quiet --no-install-recommends ${BUILD_PACKAGES} \
     && python3 -m pip install --no-cache-dir --upgrade wheel \
   && echo "Installing Python requirements" \
-    && python3 -m pip install --default-timeout=1000 --requirement requirements.txt \
+    && python3 -m pip install --default-timeout=1001 --requirement requirements.txt \
   && echo "Patching whitenoise for compression speedup" \
     && curl --fail --silent --show-error --location --output 484.patch https://github.com/evansd/whitenoise/pull/484.patch \
     && patch -d /usr/local/lib/python3.11/site-packages --verbose -p2 < 484.patch \
@@ -243,17 +243,17 @@ RUN --mount=type=cache,target=/root/.cache/pip/,id=pip-cache \
     && truncate --size 0 /var/log/*log
 
 # copy backend
-COPY --chown=1000:1000 ./src ./
+COPY --chown=1001:1001 ./src ./
 
 # copy frontend
-COPY --from=compile-frontend --chown=1000:1000 /src/src/documents/static/frontend/ ./documents/static/frontend/
+COPY --from=compile-frontend --chown=1001:1001 /src/src/documents/static/frontend/ ./documents/static/frontend/
 
 # add users, setup scripts
 # Mount the compiled frontend to expected location
 RUN set -eux \
   && echo "Setting up user/group" \
-    && addgroup --gid 1000 paperless \
-    && useradd --uid 1000 --gid paperless --home-dir /usr/src/paperless paperless \
+    && addgroup --gid 1001 paperless \
+    && useradd --uid 1001 --gid paperless --home-dir /usr/src/paperless paperless \
   && echo "Creating volume directories" \
     && mkdir --parents --verbose /usr/src/paperless/data \
     && mkdir --parents --verbose /usr/src/paperless/media \
