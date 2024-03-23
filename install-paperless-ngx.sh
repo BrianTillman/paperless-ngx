@@ -327,10 +327,10 @@ read -r -a OCR_LANGUAGES_ARRAY <<< "${_split_langs}"
 	if [[ ! $URL == "" ]] ; then
 		echo "PAPERLESS_URL=$URL"
 	fi
-	if [[ ! $USERMAP_UID == "1000" ]] ; then
+	if [[ ! $USERMAP_UID == "1001" ]] ; then
 		echo "USERMAP_UID=$USERMAP_UID"
 	fi
-	if [[ ! $USERMAP_GID == "1000" ]] ; then
+	if [[ ! $USERMAP_GID == "1001" ]] ; then
 		echo "USERMAP_GID=$USERMAP_GID"
 	fi
 	echo "PAPERLESS_TIME_ZONE=$TIME_ZONE"
