@@ -29,6 +29,7 @@ pipeline {
                 container('docker') {
                     script {
                         withDockerRegistry(credentialsId: registryCredential, url: "https://${registry}") {
+                            dockerImage.tag("${env.BUILD_ID}")
                             dockerImage.push("latest")
                         }
                     }
